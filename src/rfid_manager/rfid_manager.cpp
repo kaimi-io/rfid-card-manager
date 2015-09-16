@@ -324,27 +324,27 @@ int MainDlgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                     }
                     else
                     {
-						TCHAR DlgItemText[ARRAYSIZE(L"COMXXX")]; // 256 - max COM port
+			TCHAR DlgItemText[ARRAYSIZE(L"COMXXX")]; // 256 - max COM port
 
                         EnableWindow(GetDlgItem(hWnd, IDC_CONNECT), FALSE);
 
-						if ((i = GetDlgItemText(hWnd, IDC_COM, DlgItemText, ARRAYSIZE(DlgItemText))) == 0)
-						{
-							SetDlgItemText(hWnd, IDC_STATUS, L"No COM port selected");
-							EnableWindow(GetDlgItem(hWnd, IDC_CONNECT), TRUE);
-							break;
-						}
+			if ((i = GetDlgItemText(hWnd, IDC_COM, DlgItemText, ARRAYSIZE(DlgItemText))) == 0)
+			{
+				SetDlgItemText(hWnd, IDC_STATUS, L"No COM port selected");
+				EnableWindow(GetDlgItem(hWnd, IDC_CONNECT), TRUE);
+				break;
+			}
 
-						if (i < 4)
-						{
-							SetDlgItemText(hWnd, IDC_STATUS, L"Erroneous COM port format");
-							EnableWindow(GetDlgItem(hWnd, IDC_CONNECT), TRUE);
-							break;
-						}
+			if (i < 4)
+			{
+				SetDlgItemText(hWnd, IDC_STATUS, L"Erroneous COM port format");
+				EnableWindow(GetDlgItem(hWnd, IDC_CONNECT), TRUE);
+				break;
+			}
 
-						// COM123\0 //
-						//    ^     //
-						i = _ttoi(&DlgItemText[ARRAYSIZE(L"COM") - 1]);
+			// COM123\0 //
+			//    ^     //
+			i = _ttoi(&DlgItemText[ARRAYSIZE(L"COM") - 1]);
 
                         if(rf_init_com(i, 9600))
                         {
