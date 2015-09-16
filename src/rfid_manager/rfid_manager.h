@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <TlHelp32.h>
 #include <Commctrl.h>
+#include <tchar.h>
 
 #include <algorithm>
 #include <bitset>
